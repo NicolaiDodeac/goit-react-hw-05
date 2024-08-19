@@ -15,7 +15,6 @@ const MoviesPage = () => {
       try {
         const data = await fetchMovieQuery(query);
         setMovies(data);
-        console.log(data);
       } catch (error) {
         console.log(error.message);
       }

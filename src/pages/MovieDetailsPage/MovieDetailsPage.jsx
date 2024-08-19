@@ -6,7 +6,6 @@ import {
   useParams,
 } from "react-router-dom";
 import { fetchMovieById } from "../../../services/movieAPI";
-import s from "./MovieDetailsPage.module.css";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 
@@ -14,7 +13,6 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const goBackRef = useRef(location.state ?? "/movies");
-  console.log(location);
   const [movieById, setmovieById] = useState(null);
 
   useEffect(() => {
@@ -45,8 +43,8 @@ const MovieDetailsPage = () => {
           </h1>
 
           <p className="mb-4">
-            <span className="font-semibold">User Score:</span>
-            {movieById.vote_average * 10}%
+            <span className="font-semibold">User Score: </span>
+            {(movieById.vote_average * 10).toFixed(0)} %
           </p>
 
           <p className="font-semibold mb-2">Overview</p>

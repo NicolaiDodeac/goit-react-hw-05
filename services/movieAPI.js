@@ -48,7 +48,6 @@ export const fetchMovieQuery = async (query) => {
     `${url}/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
     options
   );
-  console.log(data);
   return data.results;
 };
 

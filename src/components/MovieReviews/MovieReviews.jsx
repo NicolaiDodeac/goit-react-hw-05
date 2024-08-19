@@ -31,7 +31,7 @@ const MovieReviews = () => {
             <h2 className="font-bold">{item.author} :</h2>
           </li>
           <li className="mb-8">
-            <p> " {item.content} "</p>
+            <p> " {item.content} " </p>
           </li>
         </ul>
       ))}
