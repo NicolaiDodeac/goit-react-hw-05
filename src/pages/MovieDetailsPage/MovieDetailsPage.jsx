@@ -6,7 +6,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { fetchMovieById } from "../../../services/movieAPI";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 
 const MovieDetailsPage = () => {
@@ -73,7 +73,9 @@ const MovieDetailsPage = () => {
       </div>
 
       <div className="mt-8">
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );
