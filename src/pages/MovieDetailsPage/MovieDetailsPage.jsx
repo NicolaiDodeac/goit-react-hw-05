@@ -72,7 +72,6 @@ const MovieDetailsPage = () => {
         </ul>
       </div>
 
-      {/* Render additional information (cast/reviews) */}
       <div className="mt-8">
         <Outlet />
       </div>
@@ -81,36 +80,3 @@ const MovieDetailsPage = () => {
 };
 
 export default MovieDetailsPage;
-//   return (
-//     <div className="ml-20 mb-20">
-//       <Link className={s.link} to={goBackRef.current}>
-//         GoBack
-//       </Link>
-//       <div>
-//         <img
-//           src={`https://image.tmdb.org/t/p/w500/${movieById.backdrop_path}`}
-//           alt=""
-//         />
-//         <p>Additional Information</p>
-//         <ul className={s.infoWrapper}>
-//           <li>
-//             <NavLink to="cast">Cast</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to="reviews">Reviews</NavLink>
-//           </li>
-//         </ul>
-//         <Outlet />
-//       </div>
-//       <h1>
-//         {movieById.title} {movieById.release_date}
-//       </h1>
-//       <p>Overview</p>
-//       <span>{movieById.overview}</span>
-//       <p>Genres</p>
-//       <span>{movieById.genres.map((genre) => genre.name).join(", ")}</span>
-//     </div>
-//   );
-// };
-
-// export default MovieDetailsPage;

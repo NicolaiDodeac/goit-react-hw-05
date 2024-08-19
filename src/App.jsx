@@ -22,10 +22,14 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="/movies" element={<MoviesPage />} />
-            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-              <Route path="cast" element={<MovieCast />} />
-              <Route path="reviews" element={<MovieReviews />} />
-            </Route>
+            <Suspense fallback={<Loader />}>
+              <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+                <Suspense>
+                  <Route path="cast" element={<MovieCast />} />
+                  <Route path="reviews" element={<MovieReviews />} />
+                </Suspense>
+              </Route>
+            </Suspense>
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
