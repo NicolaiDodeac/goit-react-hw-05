@@ -5,3 +5,11 @@
 .link {
   font-size: 24px;
 }
+
+.wrapper {
+  background-color: #d4d5da;
+  padding: 20px 60px;
+  display: flex;
+  /* justify-content: center; */
+  margin-bottom: 30px;
+}

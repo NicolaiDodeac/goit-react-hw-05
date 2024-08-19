@@ -36,48 +36,21 @@ export const fetchCast = async (castId) => {
 
 export const fetchReviews = async (movieId) => {
   const { data } = await axios.get(
-    `${url}/movie/${movieId}/reviews?language=en-US&page=1', options)`,
+    `${url}/movie/${movieId}/reviews?language=en-US&page=1`,
     options
   );
-  return data.reviews;
+
+  return data.results;
 };
 
-// axios.defaults.baseURL = "https://api.themoviedb.org/3";
-// const params = {
-//   headers: {
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZTY3NzRmNDY5ZmU0Y2E2M2ZlM2M4Y2MwOTFiYzk1ZCIsIm5iZiI6MTcyMzkxOTIzNi40NjAxMjcsInN1YiI6IjY2YzBlOTY5NGYyNDA2N2UzZTAzYzE2NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0zP6OhN9OvYJ55YeEhV5KWXT6VycxUMAI1aQIaCPQU8",
-//   },
-// };
-
-// export const fetchMovie = async () => {
-//   const dataTrendingMovie = await axios.get("/trending/movie/day", params);
-//   console.log(dataTrendingMovie);
-//   return dataTrendingMovie;
-// };
-
-// export const searchMovies = async (query) => {
-//   const dataSearchMove = await axios.get("/search/movie", {
-//     ...params,
-//     params: { query },
-//   });
-//   return dataSearchMove;
-// };
-
-// export const movieDetails = async (movieId) => {
-//   const dataMovieDetails = await axios.get(`/movie/${movieId}`, params);
-//   return dataMovieDetails;
-// };
-
-// export const movieCast = async (movieId) => {
-//   const dataMovieCast = await axios.get(`/movie/${movieId}/credits`, params);
-//   return dataMovieCast;
-// };
-
-// export const movieReviews = async (movieId) => {
-//   const dataMovieReviews = await axios.get(`/movie/${movieId}/reviews`, params);
-//   return dataMovieReviews;
-// };
+export const fetchMovieQuery = async (query) => {
+  const { data } = await axios.get(
+    `${url}/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+    options
+  );
+  console.log(data);
+  return data.results;
+};
 
 // // const url =
 // //   "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1";

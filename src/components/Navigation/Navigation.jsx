@@ -6,8 +6,8 @@ const Navigation = () => {
     return clsx(s.link, isActive && s.activeLinkNavigation);
   };
   return (
-    <section>
-      <ul className="list-none flex gap-4">
+    <section className={s.wrapper}>
+      <ul className="list-none flex gap-2">
         <li>
           <NavLink className={buildLinkClass} to="/">
             Home

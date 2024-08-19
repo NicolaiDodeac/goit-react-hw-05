@@ -1,28 +1,21 @@
-import { useEffect, useState } from "react";
-import { fetchMovie } from "../../../services/movieAPI";
-import { Link } from "react-router-dom";
-const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+import { Link, useLocation } from "react-router-dom";
+// import s from "./MovieList.module.css";
 
-  useEffect(() => {
-    const fetchMovieList = async () => {
-      try {
-        const movieData = await fetchMovie();
-        setMovies(movieData);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchMovieList();
-  }, []);
+const MovieList = ({ movies }) => {
+  const location = useLocation();
 
   return (
-    <div>
-      <h2 className="text-3xl mb-4">Trending today</h2>
-      <ul className="flex flex-col gap-2">
+    <div className="flex gap-2 justify-start pl-16">
+      <ul className="flex flex-col gap-3">
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          <li className="list-disc" key={movie.id}>
+            <Link
+              className="text-blue-600 hover:text-blue-700 "
+              to={`/movies/${movie.id.toString()}`}
+              state={location}
+            >
+              {movie.title}
+            </Link>
           </li>
         ))}
       </ul>

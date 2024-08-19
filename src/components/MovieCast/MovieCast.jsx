@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 import { fetchCast } from "../../../services/movieAPI";
 import { useParams } from "react-router-dom";
-import seError from "../ErrorMessage/ErrorMessage";
 
 const MovieCast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
-  const [isError, setIsError] = useState("");
 
   useEffect(() => {
     const fetchCastById = async () => {
       try {
-        setIsError(false);
         const data = await fetchCast(movieId);
         setCast(data);
       } catch (error) {
-        setIsError(true);
         console.log(error.message);
       }
     };
@@ -23,31 +19,28 @@ const MovieCast = () => {
     fetchCastById();
   }, [movieId]);
 
-  if (isError) {
-    seError();
-  } else {
-    return (
-      <div>
-        <ul className="">
-          {cast.map((item) => (
-            <li
-              // className="w-60 p-4 bg-amber-700 text-black rounded-xl flex flex-col "
-              key={item.id}
-            >
-              {item.profile_path && (
-                <img
-                  // className="max-w-40 rounded-xl mb-4"
-                  src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
-                  alt={item.name}
-                />
-              )}
-              <h3 className=" ">{item.name}</h3>
-              <p className="">Character:{item.character}</p>
-            </li>
-          ))}
+  return (
+    <div className="space-y-4">
+      {cast.map((item) => (
+        <ul className="flex flex-col gap-3" key={item.id}>
+          <li className="flex items-start space-x-4">
+            {item.profile_path && (
+              <img
+                className="w-20 h-20 object-cover rounded"
+                src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
+                alt={item.name}
+              />
+            )}
+          </li>
+          <li className="list-disc">
+            <h3 className="font-semibold">{item.name}</h3>
+          </li>
+          <li>
+            <p className="text-gray-600">Character: {item.character}</p>
+          </li>
         </ul>
-      </div>
-    );
-  }
+      ))}
+    </div>
+  );
 };
 export default MovieCast;
