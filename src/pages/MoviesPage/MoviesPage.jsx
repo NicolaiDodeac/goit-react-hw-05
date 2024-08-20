@@ -11,6 +11,8 @@ const MoviesPage = () => {
   const query = searchParams.get("query") ?? "";
 
   useEffect(() => {
+    if (query === "") return;
+
     const fetchMovieByQuery = async () => {
       try {
         const data = await fetchMovieQuery(query);
@@ -21,11 +23,12 @@ const MoviesPage = () => {
     };
 
     fetchMovieByQuery();
-  }, [searchParams]);
+  }, [query]);
 
   const handleSubmit = (value) => {
-    searchParams.set("query", value);
-    setSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams);
+    params.set("query", value);
+    setSearchParams(params);
   };
 
   return (
